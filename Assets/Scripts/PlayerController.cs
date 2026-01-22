@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 velocity;
     private bool isGrounded;
+    float lookHorizontal = 0f;
+    float lookVertical = 0f;
+    float verticalRotation;
     
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
@@ -27,14 +31,14 @@ public class PlayerController : MonoBehaviour
     
     [Header("Camera")]
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private float maxAngleUp = 80f;
+    [SerializeField] private float maxAngleDown = -80f;
     
     private CharacterController characterController;
-    private Rigidbody playerRigidbody;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        playerRigidbody = GetComponent<Rigidbody>();
     }
     
     private void OnEnable()
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
         move.action.Enable();
         jump.action.Enable();
         run.action.Enable();
+        look.action.Enable();
 
         move.action.started += OnMove;
         move.action.performed += OnMove;
@@ -52,6 +57,10 @@ public class PlayerController : MonoBehaviour
         run.action.started += OnRun;
         run.action.performed += OnRun;
         run.action.canceled += OnRun;
+        
+        look.action.started += OnLook;
+        look.action.performed += OnLook;
+        look.action.canceled += OnLook;
     }
 
     // Events
@@ -72,6 +81,12 @@ public class PlayerController : MonoBehaviour
     {
         mustRun = ctx.ReadValueAsButton();
     }
+
+    private void OnLook(InputAction.CallbackContext ctx)
+    {
+        lookHorizontal = ctx.ReadValue<Vector2>().x;
+        lookVertical = ctx.ReadValue<Vector2>().y;
+    }
     
     // Update
     private void Update()
@@ -86,7 +101,9 @@ public class PlayerController : MonoBehaviour
         }
         
         Vector3 moveToApply = new Vector3(rawMovement.x, 0 , rawMovement.y);
+        moveToApply = transform.TransformDirection(moveToApply);  // Importante para mover tras rotación
         characterController.Move(moveToApply * realSpeed * Time.deltaTime);
+        
         
         // Jump
         if (mustJump && isGrounded)
@@ -98,6 +115,14 @@ public class PlayerController : MonoBehaviour
         // Aplicar gravedad
         velocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+        
+        // Look
+        transform.Rotate(Vector3.up, lookHorizontal, Space.World);
+        characterController.transform.Rotate(Vector3.up, lookHorizontal, Space.Self);
+        
+        
+        verticalRotation = Mathf.Clamp(verticalRotation - (lookVertical * lookSpeed), maxAngleDown, maxAngleUp);
+        playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
 
     }
     
@@ -113,8 +138,13 @@ public class PlayerController : MonoBehaviour
         run.action.performed -= OnRun;
         run.action.canceled -= OnRun;
         
+        look.action.started -= OnLook;
+        look.action.performed -= OnLook;
+        look.action.canceled -= OnLook;
+        
         move.action.Disable();
         jump.action.Disable();
         run.action.Disable();
+        look.action.Disable();
     }
 }

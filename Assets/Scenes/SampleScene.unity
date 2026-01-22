@@ -678,9 +678,12 @@ MonoBehaviour:
   run: {fileID: -6022306048517930211, guid: 1d5452dd512564ab585d2e35561194f7, type: 3}
   shoot: {fileID: -2994497990455626959, guid: 1d5452dd512564ab585d2e35561194f7, type: 3}
   speed: 5
+  runMultiplier: 5
   lookSpeed: 1
   jumpHeight: 2
   playerCamera: {fileID: 330585545}
+  maxAngleUp: 80
+  maxAngleDown: -80
 --- !u!143 &1316827706
 CharacterController:
   m_ObjectHideFlags: 0
@@ -697,7 +700,7 @@ CharacterController:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
