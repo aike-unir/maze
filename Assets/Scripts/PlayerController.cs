@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference look;
     [SerializeField] private InputActionReference jump;
     [SerializeField] private InputActionReference run;
-    [SerializeField] private InputActionReference shoot;
+    
     
     Vector2 rawMovement = Vector2.zero;
     
