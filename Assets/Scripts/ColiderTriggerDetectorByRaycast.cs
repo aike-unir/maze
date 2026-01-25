@@ -6,6 +6,7 @@ public class ColiderTriggerDetectorByRycast : MonoBehaviour
     [SerializeField] private InputActionReference shoot;
     [SerializeField] private Canvas canvasInterruptorDetected;
     [SerializeField] private LayerMask layerAllowed;
+    [SerializeField] private Camera playerCamera;
     // estas layer mask es para comprobar solo una layer, dicha layer la podemos poner en
     // ProjectSettings / physics / Layer Collision Matrix / (desactivar la layer para no tener que calcularla constantemente)
 
@@ -21,8 +22,7 @@ public class ColiderTriggerDetectorByRycast : MonoBehaviour
     private void Update()
     {
         canvasInterruptorDetected.gameObject.SetActive(false);
-        
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerAllowed))
+        if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerAllowed))
         {
             
             
