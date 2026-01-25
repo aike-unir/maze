@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class ColiderTriggerDetector : MonoBehaviour
 {
     [SerializeField] private int initialLife = 3;
+    [SerializeField] private float secondsAfterDamage = 3f;
     
     [SerializeField] private float radius = 1.1f;
     [SerializeField] private Canvas canvasTrapDetected;
@@ -30,7 +31,7 @@ public class ColiderTriggerDetector : MonoBehaviour
         bool anyTrapDetected = false;
         foreach (Collider col in colliders)
         {
-            if (timer >= 5f)
+            if (timer >= secondsAfterDamage)
             {
                 if (col.tag == "Trap")
                 {
