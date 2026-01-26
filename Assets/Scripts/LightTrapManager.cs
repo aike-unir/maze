@@ -8,16 +8,21 @@ public class LightTrapManager : MonoBehaviour
     [SerializeField] private float timeToChange = 5f;
 
     int selectedLight = 0;
-    private void Start()
+    private bool isActive = false;
+    public void ActivateTraps()
     {
+        isActive = true;
         LightTrapController lightController = lights[0].GetComponent<LightTrapController>();
         lightController.ActivateLightTrap();
     }
-    
     // Update is called once per frame
     float timer = 0f;
     void Update()
     {
+        if (!isActive)
+        {
+            return;
+        }
         timer += Time.deltaTime;
         
         if (timer >= timeToChange)

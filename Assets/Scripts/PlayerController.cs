@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext ctx)
     {
         mustJump = ctx.ReadValueAsButton();
-        // Debug.Log($"mustJump: {mustJump}");
     }
 
     private bool mustRun= false;

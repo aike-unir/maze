@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -36,18 +37,27 @@ public class ColiderTriggerDetector : MonoBehaviour
                 if (col.tag == "Trap")
                 {
                     anyTrapDetected = true;
-                    Debug.Log("Hay un trigger trampa cerca");
 
                     life--;
                     timer = 0f;
                     Debug.Log($"Vida disminuye a {life}");
                     AdjustLife(life);
+                    StartCoroutine(ShowDamage());
                 }
             }
         }
 
-        canvasTrapDetected.gameObject.SetActive(anyTrapDetected);
+        //canvasTrapDetected.gameObject.SetActive(anyTrapDetected);
 
+    }
+    
+    IEnumerator ShowDamage()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        canvasTrapDetected.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        canvasTrapDetected.gameObject.SetActive(false);
     }
 
     private void AdjustLife(int life)
