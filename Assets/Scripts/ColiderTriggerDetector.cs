@@ -10,6 +10,7 @@ public class ColiderTriggerDetector : MonoBehaviour
     
     [SerializeField] private float radius = 1.1f;
     [SerializeField] private Canvas canvasTrapDetected;
+    [SerializeField] private Canvas canvasWin;
     [SerializeField] private LayerMask layerAllowed;
     
     [SerializeField] public Image[] heartsImages;
@@ -43,6 +44,9 @@ public class ColiderTriggerDetector : MonoBehaviour
                     Debug.Log($"Vida disminuye a {life}");
                     AdjustLife(life);
                     StartCoroutine(ShowDamage());
+                } else if (col.tag == "Win")
+                {
+                    canvasWin.gameObject.SetActive(true);
                 }
             }
         }
