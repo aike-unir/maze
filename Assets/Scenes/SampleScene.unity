@@ -62708,7 +62708,7 @@ Transform:
   m_GameObject: {fileID: 1316827700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 160.02}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65942,6 +65942,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Interruptor
       objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -68546,6 +68554,18 @@ PrefabInstance:
     - target: {fileID: 3837541979802108253, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
       propertyPath: m_Name
       value: Cube Interruptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.z
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -101868,6 +101888,14 @@ PrefabInstance:
     - target: {fileID: 3837541979802108253, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
       propertyPath: m_Name
       value: Cube Interruptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925521605844519727, guid: 56b50fd53715c42aa8a78a84412a6498, type: 3}
+      propertyPath: m_Size.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
